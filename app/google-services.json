@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1044810272514",
+    "project_id": "sanad-30a51",
+    "storage_bucket": "sanad-30a51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044810272514:android:cd12610bd8c3aa2cddbc1b",
+        "android_client_info": {
+          "package_name": "com.example.sanad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044810272514-mgnpqn04k6od5mpls99m8jqa54uj1da7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sanad",
+            "certificate_hash": "e055a0ba5bbecef76b8db01d8d6a526cede67d3a"
+          }
+        },
+        {
+          "client_id": "1044810272514-n9eki0n352v81e804ndftk4euhmop8bm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGXJA-qQMr17ew2EugPEmIAb05zVJ5g-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1044810272514-n9eki0n352v81e804ndftk4euhmop8bm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

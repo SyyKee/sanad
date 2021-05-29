@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Projet PFE</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- formulaire -->
+    <string name="nom">Saisissez votre nom </string>
+    <string name="prenom">Saisissez votre prenom</string>
+    <string name="email">Saisissez votre email</string>
+    <string name="num">Saisissez votre numéro de téléphone </string>
+    <string name="adresse">Saisissez votre adresse</string>
+    <string name="password" type="password">Saisissez votre mot de passe</string>
+
+    <!-- bouton -->
+    <string name="se_connecter">Se connecter</string>
+    <string name="s_inscrire">S&amp;aposinscrire</string>
+    <string name="rebonjour">Rebonjour</string>
+</resources>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".LoginActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_200"
+        tools:ignore="ExtraText">
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="308dp"
+            android:layout_marginRight="308dp"
+            android:background="@drawable/circle_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="205dp"
+            android:layout_height="199dp"
+            android:layout_marginBottom="628dp"
+            android:background="@drawable/circle_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editTextTextEmailAddress"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:autofillHints=""
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/ic_baseline_email_24"
+            android:drawableLeft="@drawable/ic_baseline_email_24"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Entrez votre Email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39" />
+
+        <EditText
+            android:id="@+id/editTextTextNom"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/ic_baseline_assignment_ind_24"
+            android:drawableLeft="@drawable/ic_baseline_assignment_ind_24"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Entrez votre Nom complet"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45999998" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="165dp"
+            android:layout_height="115dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.227"
+            app:srcCompat="@drawable/ic_undraw_receipt_re_fre3_1"
+            tools:ignore="VectorDrawableCompat" />
+
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:drawableLeft="@drawable/ic_baseline_lock_24"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Entrez votre Mot De passe"
+            android:inputType="textPassword"
+            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.744"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editTextTextAdresse"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/ic_baseline_location_on_24"
+            android:drawableLeft="@drawable/ic_baseline_location_on_24"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Entrez votre Adresse"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.673" />
+
+        <EditText
+            android:id="@+id/editTextTextTel"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/ic_baseline_phone_24"
+            android:drawableLeft="@drawable/ic_baseline_phone_24"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Entrez votre Numéro de Téléphone"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.602" />
+
+        <EditText
+            android:id="@+id/editTextTextCin"
+            android:layout_width="300dp"
+            android:layout_height="35dp"
+            android:autofillHints=""
+            android:background="@drawable/input_style"
+            android:drawableStart="@drawable/ic_baseline_assignment_ind_24"
+            android:drawableLeft="@drawable/ic_baseline_assignment_ind_24"
+            android:drawablePadding="5dp"
+            android:ems="10"
+            android:fontFamily="@font/poppins_medium"
+            android:hint="Entrez votre Cin"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:paddingLeft="12dp"
+            android:textSize="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.53" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="234dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="52dp"
+            android:background="@color/blue_300"
+            android:fontFamily="@font/poppins_medium"
+            android:text="s'inscrire"
+            android:textColor="@color/white_100"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+            app:layout_constraintVertical_bias="0.281" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="27dp"
+            android:layout_height="26dp"
+            android:progressDrawable="@color/black"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.798" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
