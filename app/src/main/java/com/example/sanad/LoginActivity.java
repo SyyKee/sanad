@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this,"Connexion réussie ",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(),navigation.class));
                         }else{
                             Toast.makeText(LoginActivity.this,"Email ou mot de passe incorrect"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             barreProgression.setVisibility(View.GONE);

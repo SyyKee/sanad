@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Projet PFE</string>
     <string name="title_activity_maps">Map</string>
-
+    <string name="google_map_api_key">AIzaSyAiaZ-j6uvMV_oThvvRR_Nf6h5F3x38964</string>
     <!-- formulaire -->
     <string name="nom">Saisissez votre nom </string>
     <string name="prenom">Saisissez votre prenom</string>
@@ -14,4 +14,6 @@
     <string name="se_connecter">Se connecter</string>
     <string name="s_inscrire">S&amp;aposinscrire</string>
     <string name="rebonjour">Rebonjour</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

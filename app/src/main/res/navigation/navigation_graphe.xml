@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graphe"
+    app:startDestination="@id/declarationFragment">
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.sanad.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/profilFragment"
+        android:name="com.example.sanad.ProfilFragment"
+        android:label="fragment_profil"
+        tools:layout="@layout/fragment_profil" />
+    <fragment
+        android:id="@+id/declarationFragment"
+        android:name="com.example.sanad.DeclarationFragment"
+        android:label="fragment_declaration"
+        tools:layout="@layout/fragment_declaration" />
+</navigation>
