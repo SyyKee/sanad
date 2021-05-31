@@ -25,6 +25,6 @@ public class navigation extends AppCompatActivity {
 
        // Fragment fragment = new MapsFragment();
 
-            //  getSupportFragmentManager().beginTransaction().replace(R.id.map,fragment).commit();
+             // getSupportFragmentManager().beginTransaction().replace(R.id.map,fragment).commit();
     }
 }
