@@ -7,9 +7,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class navigation extends AppCompatActivity {
+
+    LatLng PARIS = new LatLng(-34, 153);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +26,9 @@ public class navigation extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
 
 
-       // Fragment fragment = new MapsFragment();
+                // Fragment fragment = new MapsFragment();
 
-             // getSupportFragmentManager().beginTransaction().replace(R.id.map,fragment).commit();
+                // getSupportFragmentManager().beginTransaction().replace(R.id.map,fragment).commit();
+            }
+
     }
-}

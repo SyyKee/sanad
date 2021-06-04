@@ -15,8 +15,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsFragment extends Fragment {
-
+public class MapsFragment extends Fragment{
+    private GoogleMap mMap;
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -31,24 +31,24 @@ public class MapsFragment extends Fragment {
 
         @Override
         public void onMapReady(GoogleMap googleMap) {
-
+            mMap = googleMap;
             LatLng sydney = new LatLng(-34, 153);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
 
 
         }
 
-    };
+   };
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_maps, container, false);
 
+       return inflater.inflate(R.layout.fragment_maps, container, false);
 
     }
 
