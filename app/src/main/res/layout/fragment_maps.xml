@@ -8,6 +8,7 @@
     tools:context=".MapsFragment"
     tools:ignore="DuplicateIds">
 <fragment
+    android:id="@id/map_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:name="com.google.android.gms.maps.SupportMapFragment"
