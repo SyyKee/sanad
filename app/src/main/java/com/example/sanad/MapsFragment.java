@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -36,14 +37,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-
+    private String  subject, message;
+    TextView email;
+    private Button button;
     View view;
     Context context;
     MapView mapView;
     GoogleMap map;
     List<DeclarationModel> list;
     int counter = 1;
-
+    public FirebaseFirestore fStore;
+    private FirebaseAuth mAuth;
+    String UID;
+    public static final String TAG = "TAG";
     @Nullable
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -72,7 +78,9 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         // Obtenir les donnees du marqueur et afficher ces donnees dans la boite de dialogue
         DeclarationModel declaration = list.get(position-1);
         showDialog(declaration);
+
         return false;
+
     }
 
     @Override
@@ -101,7 +109,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
                     }
                 });
 
-        //faire appel a la fonction onMarkerClick aui permet au user de cliquer sur la map
+        //faire appel a la fonction onMarkerClick qui permet au user de cliquer sur la map
         map.setOnMarkerClickListener(this);
         map.getUiSettings().setMyLocationButtonEnabled(false);
 
@@ -135,6 +143,26 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         mapView.onLowMemory();
         super.onLowMemory();
     }
+    private void senEmail() {
+
+       // fStore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+        UID = mAuth.getCurrentUser().getEmail();
+        //DocumentReference documentReference = fStore.collection("Users").document(UID);
+
+
+
+        String mEmail = UID.toString();
+        String mSubject = "pfe";
+        String mMessage = "hello";
+
+
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
+
+        javaMailAPI.execute();
+    }
+
 
 
     // afficher la boite de dialogue apres le clique sur le marqueur
@@ -160,7 +188,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                senEmail();
             }
         });
 
@@ -168,4 +196,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
     }
+
+
 }
