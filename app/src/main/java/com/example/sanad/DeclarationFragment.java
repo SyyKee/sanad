@@ -4,11 +4,15 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,8 +34,14 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+
+import static com.example.sanad.RegisterActivity.TAG;
 
 public class DeclarationFragment extends Fragment {
 
@@ -83,7 +93,7 @@ public class DeclarationFragment extends Fragment {
                     DocumentSnapshot document = task.getResult();
                     if(document.exists()){
                         name = document.getData().get("nomComplet").toString();
-                        address = document.getData().get("adresse").toString();
+                       // address = document.getData().get("adresse").toString();
                         phone = document.getData().get("numéro").toString();
 
                         //Toast.makeText(context, name+" "+phone+" "+address, Toast.LENGTH_SHORT).show();
@@ -109,11 +119,64 @@ public class DeclarationFragment extends Fragment {
 
                 showProgressDialog();
                 getLocationn();
+
             }
         });
         return view;
     }
+     //cobertir les cordonnes en adresse physique
+    private String convertLocationToAddress(Location location) {
+        String addressText;
+        String errorMessage = "";
 
+        Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
+
+        List<Address> addresses = null;
+
+        try {
+            addresses = geocoder.getFromLocation(
+                    location.getLatitude(),
+                    location.getLongitude(),
+                    1
+            );
+        } catch (IOException ioException) {
+            // erreur de connection
+            errorMessage = "erreur";
+            Log.e(TAG, errorMessage, ioException);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            // cordonne erronée
+            errorMessage = "erreur";
+            Log.e(TAG, errorMessage + ". " +
+                    "Latitude = " + location.getLatitude() +
+                    ", Longitude = " +
+                    location.getLongitude(), illegalArgumentException);
+        }
+
+        // on a pas trouvé l adresse
+        if (addresses == null || addresses.size() == 0) {
+            if (errorMessage.isEmpty()) {
+                errorMessage = "erreur";
+                Log.e(TAG, errorMessage);
+            }
+            addressText = "Contactez nous pour fournir l adresse";
+
+        } else {
+            Address address = addresses.get(0);
+            ArrayList<String> addressFragments = new ArrayList<>();
+
+            // chercher les lignes d adresse et les joindre.
+            for (int i = 0; i <= address.getMaxAddressLineIndex(); i++) {
+                addressFragments.add(address.getAddressLine(i));
+            }
+            Log.i(TAG, "trouvé");
+            addressText =
+                    TextUtils.join(System.getProperty("line.separator"),
+                            addressFragments);
+        }
+
+        return addressText;
+
+    }
     private void getLocationn() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -124,9 +187,10 @@ public class DeclarationFragment extends Fragment {
             public void onLocationChanged(Location location) {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
-
+                address = convertLocationToAddress(location);
                 Map<String, Object> group = new HashMap<>();
                 group.put("username", name);
+                //group.put("address", address);
                 group.put("address", address);
                 group.put("phone", phone);
                 group.put("decText", decText);

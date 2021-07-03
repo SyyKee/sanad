@@ -102,7 +102,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
                                 list.add(model);
                                 LatLng userLocation = new LatLng(document.getDouble("lati"), document.getDouble("longi"));
                                 map.addMarker(new MarkerOptions().position(userLocation).title(counter+"").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,5));
+                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,30));
                                 counter = counter+1;
                             }
                         }
@@ -145,23 +145,21 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
     }
     private void senEmail() {
 
-       // fStore = FirebaseFirestore.getInstance();
+
         mAuth = FirebaseAuth.getInstance();
 
         UID = mAuth.getCurrentUser().getEmail();
-        //DocumentReference documentReference = fStore.collection("Users").document(UID);
-
-
 
         String mEmail = UID.toString();
-        String mSubject = "pfe";
-        String mMessage = "hello";
+        String mSubject = "Sanad";
+        String mMessage = "C'est confirmé!";
 
 
         JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
 
         javaMailAPI.execute();
     }
+
 
 
 
@@ -189,6 +187,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
             @Override
             public void onClick(View v) {
                 senEmail();
+
             }
         });
 
