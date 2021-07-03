@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -143,7 +145,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         mapView.onLowMemory();
         super.onLowMemory();
     }
-    private void senEmail() {
+    private void sendEmail() {
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -153,6 +155,22 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         String mEmail = UID.toString();
         String mSubject = "Sanad";
         String mMessage = "C'est confirmé!";
+
+
+        JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
+
+        javaMailAPI.execute();
+    }
+    private void sendEmail2() {
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+        UID = mAuth.getCurrentUser().getEmail();
+
+        String mEmail = UID.toString();
+        String mSubject = "Sanad";
+        String mMessage = "Participation confirmée!";
 
 
         JavaMailAPI javaMailAPI = new JavaMailAPI(this, mEmail, mSubject, mMessage);
@@ -176,6 +194,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         final TextView tvPhone = dialogView.findViewById(R.id.tvPhone);
         final TextView tvDeclaration = dialogView.findViewById(R.id.tvDeclaration);
         final Button btn = dialogView.findViewById(R.id.btn);
+        final Button btn2 = dialogView.findViewById(R.id.btn2);
 
 
         tvUsername.setText(declaration.getUsername());
@@ -186,7 +205,44 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                senEmail();
+                sendEmail();
+
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog2();
+            }
+        });
+
+        AlertDialog alertDialog = dailogBuilder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.show();
+    }
+
+    private void showDialog2() {
+
+        // afficher notre boite de dialogue du fichier layout
+        AlertDialog.Builder dailogBuilder = new AlertDialog.Builder(context);
+        LayoutInflater inflater = getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_layout2, null);
+        dailogBuilder.setView(dialogView);
+        final Button btn = dialogView.findViewById(R.id.btn);
+        final EditText participation;
+        participation = (EditText) dialogView.findViewById(R.id.tvParticipation);
+
+
+
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(context, "Participation ajouté", Toast.LENGTH_SHORT).show();
+                participation.setText("");
+                sendEmail2();
 
             }
         });
@@ -195,6 +251,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         alertDialog.show();
     }
+
+
 
 
 }

@@ -8,118 +8,118 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="489dp"
         android:background="#9DD6CF">
 
         <TextView
+            android:id="@+id/tt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Informations"
-            android:textSize="18sp"
-            android:textColor="#000"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="50dp"
-            android:id="@+id/tt"/>
+            android:text="Informations"
+            android:textColor="#000"
+            android:textSize="18sp" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card"
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:layout_marginRight="40dp"
+            android:layout_below="@+id/tt"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@+id/tt"
-            android:id="@+id/card"
-            >
+            android:layout_marginRight="40dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tv1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="Utilisateur"
-                    android:textSize="16sp"
                     android:textColor="#000"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/tv1"/>
+                    android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tvUsername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="16sp"
-                    android:textColor="#696767"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_below="@+id/tv1"
-                    android:id="@+id/tvUsername"/>
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text=""
+                    android:textColor="#696767"
+                    android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Addresse"
-                    android:textSize="16sp"
-                    android:textColor="#000"
-                    android:layout_marginTop="10dp"
                     android:layout_below="@+id/tvUsername"
                     android:layout_marginLeft="10dp"
-                    android:id="@+id/tv2"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="16sp"
-                    android:textColor="#696767"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_below="@+id/tv2"
-                    android:id="@+id/tvAddress"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Téléphone"
-                    android:textSize="16sp"
-                    android:textColor="#000"
                     android:layout_marginTop="10dp"
+                    android:text="Addresse"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text=""
+                    android:textColor="#696767"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/tvAddress"
                     android:layout_marginLeft="10dp"
-                    android:id="@+id/tv3"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textSize="16sp"
-                    android:textColor="#696767"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_below="@+id/tv3"
-                    android:id="@+id/tvPhone"/>
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Déclaration"
-                    android:textSize="16sp"
-                    android:textColor="#000"
                     android:layout_marginTop="10dp"
+                    android:text="Téléphone"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv3"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text=""
+                    android:textColor="#696767"
+                    android:textSize="16sp" />
+
+
+                <TextView
+                    android:id="@+id/tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/tvPhone"
                     android:layout_marginLeft="10dp"
-                    android:id="@+id/tv4"/>
+                    android:layout_marginTop="10dp"
+                    android:text="Déclaration"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
 
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv4"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="5dp"
-                    android:layout_below="@+id/tv4">
+                    android:layout_marginRight="10dp">
+
                     <androidx.core.widget.NestedScrollView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
@@ -129,11 +129,11 @@
                             android:layout_height="match_parent">
 
                             <TextView
+                                android:id="@+id/tvDeclaration"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:scrollbars="vertical"
-                                android:textSize="16sp"
-                                android:id="@+id/tvDeclaration"/>
+                                android:textSize="16sp" />
 
                         </RelativeLayout>
 
@@ -147,21 +147,31 @@
         </androidx.cardview.widget.CardView>
 
         <Button
+            android:id="@+id/btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="   Confirmer la présence   "
-            android:background="#58C3CB"
             android:layout_below="@+id/card"
-            android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
-            android:id="@+id/btn"
-            android:textColor="#fff"
-            />
+            android:layout_marginTop="15dp"
+            android:background="#58C3CB"
+            android:text="   Confirmer la présence   "
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="76dp"
+            android:background="#58C3CB"
+            android:text="   Participer   "
+            android:textColor="#fff" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn"/>
+            android:layout_below="@+id/btn" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
