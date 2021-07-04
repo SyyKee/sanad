@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="12dp"
+    android:background="#9DD6CF">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#9DD6CF">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Participation"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="50dp"
+            android:id="@+id/tt"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/tt"
+            android:id="@+id/card"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/tv4">
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <EditText
+                        android:id="@+id/tvtvParticipation"
+                        android:layout_width="match_parent"
+                        android:layout_height="264dp"
+                        android:background="@color/white"
+                        android:paddingStart="20dp"
+                        android:paddingLeft="12dp"
+                        android:paddingTop="10dp"
+                        android:gravity="top"
+                        android:scrollbars="vertical"
+                        android:textSize="16sp"
+                        tools:text="@tools:sample/cities" />
+
+                </RelativeLayout>
+
+
+
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btn33"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:background="#58C3CB"
+            android:text="   Ajouter   "
+            android:textColor="#fff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn33"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
