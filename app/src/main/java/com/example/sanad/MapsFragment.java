@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
@@ -29,17 +31,26 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
     private String  subject, message;
+    public String nomComplet,num,tvparticipation;
+    public EditText participation;
     TextView email;
     private Button button;
     View view;
@@ -51,7 +62,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
     public FirebaseFirestore fStore;
     private FirebaseAuth mAuth;
     String UID;
-    public static final String TAG = "TAG";
+    public static final String TAG = "TAG" ;
     @Nullable
     @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -104,7 +115,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
                                 list.add(model);
                                 LatLng userLocation = new LatLng(document.getDouble("lati"), document.getDouble("longi"));
                                 map.addMarker(new MarkerOptions().position(userLocation).title(counter+"").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
-                                map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,30));
+                                //map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation,60));
+                                map.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 12.0f));
                                 counter = counter+1;
                             }
                         }
@@ -151,7 +163,6 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         mAuth = FirebaseAuth.getInstance();
 
         UID = mAuth.getCurrentUser().getEmail();
-
         String mEmail = UID.toString();
         String mSubject = "Sanad";
         String mMessage = "C'est confirmé!";
@@ -229,18 +240,71 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.dialog_layout2, null);
         dailogBuilder.setView(dialogView);
-        final Button btn = dialogView.findViewById(R.id.btn);
-        final EditText participation;
-        participation = (EditText) dialogView.findViewById(R.id.tvParticipation);
+        final Button btn3 = dialogView.findViewById(R.id.btn33);
+        //final EditText participation ;
+
+       // participation = (EditText) dialogView.findViewById(R.id.tvParticipation);
+        //tvparticipation  = participation.getText().toString().trim();
 
 
-
-
-        btn.setOnClickListener(new View.OnClickListener() {
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
 
+                fStore = FirebaseFirestore.getInstance();
+                mAuth = FirebaseAuth.getInstance();
+
+
+                UID = mAuth.getCurrentUser().getUid();
+                DocumentReference documentReference = fStore.collection("Users").document(UID);
+                documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+
+                            DocumentSnapshot document = task.getResult();
+                            if(document.exists()){
+
+                                nomComplet = document.getData().get("nomComplet").toString();
+                                num = document.getData().get("numéro").toString();
+
+
+                                DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                                LocalDateTime date = LocalDateTime.now();
+                                date.format(format);
+                                String dateS = date.toString();
+                                boolean statut = false;
+
+                                //fStore = FirebaseFirestore.getInstance();
+
+                                participation = (EditText) dialogView.findViewById(R.id.tvtvParticipation);
+                                tvparticipation  = participation.getText().toString().trim();
+
+                                Map<String,Object> participationC = new HashMap<>();
+                                participationC.put("Participation",tvparticipation);
+                                participationC.put("Date",dateS);
+                                participationC.put("Statut",statut);
+                                participationC.put("Nom Complet",nomComplet);
+                                participationC.put("Numéro",num);
+                                String id = String.valueOf(System.currentTimeMillis());
+                                fStore.collection("Participation")
+                                        .document(id)
+                                        .set(participationC);
+
+
+                            }
+
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) { }});
+
+
                 Toast.makeText(context, "Participation ajouté", Toast.LENGTH_SHORT).show();
+
+
                 participation.setText("");
                 sendEmail2();
 
