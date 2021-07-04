@@ -304,8 +304,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
 
                 Toast.makeText(context, "Participation ajouté", Toast.LENGTH_SHORT).show();
 
-
-                participation.setText("");
+                participation = null;
                 sendEmail2();
 
             }
