@@ -165,7 +165,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="76dp"
             android:background="#58C3CB"
-            android:text="   Participer   "
+            android:text="   Promesse de participation   "
             android:textColor="#fff" />
 
         <TextView
