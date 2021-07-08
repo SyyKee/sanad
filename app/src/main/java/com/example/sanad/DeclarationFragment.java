@@ -124,7 +124,7 @@ public class DeclarationFragment extends Fragment {
         });
         return view;
     }
-     //cobertir les cordonnes en adresse physique
+     //convertir les cordonnes en adresse physique
     private String convertLocationToAddress(Location location) {
         String addressText;
         String errorMessage = "";
@@ -241,12 +241,12 @@ public class DeclarationFragment extends Fragment {
         }
     }
 
-    // Shwoing progress dialog code..
+    // barre de progression
     ProgressDialog mProgressDialog;
     public void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(context);
-            mProgressDialog.setMessage("Fetching location please wait...");
+            mProgressDialog.setMessage("Recherche de votre emplacement, veuillez patienter...");
             mProgressDialog.setIndeterminate(true);
             mProgressDialog.setCanceledOnTouchOutside(false);
         }

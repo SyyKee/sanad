@@ -217,8 +217,11 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback, Google
             @Override
             public void onClick(View v) {
                 sendEmail();
+                btn.setEnabled(false);
+                btn.setBackgroundColor(Color.parseColor("#808080"));
 
             }
+
         });
 
         btn2.setOnClickListener(new View.OnClickListener() {
