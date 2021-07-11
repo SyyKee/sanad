@@ -1,5 +1,6 @@
 package com.example.sanad;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,26 +8,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class ProfilFragment extends Fragment  {
     View view;
     private TextView logout;
     FirebaseAuth mAuth;
-
-
-
-
+    FirebaseFirestore fStore;
+    String UID,name,phone;
+    Button insert;
+    FirebaseDatabase demande;
+    DatabaseReference refdemande;
+    Context context;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_profil, container, false);
-
+        context = container.getContext();
 
         logout = (Button) view.findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener(){
@@ -42,6 +55,43 @@ public class ProfilFragment extends Fragment  {
 
 
 
+        fStore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+        UID = mAuth.getCurrentUser().getUid();
+        DocumentReference documentReference = fStore.collection("Users").document(UID);
+
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists()){
+                        name = document.getData().get("nomComplet").toString();
+                        // address = document.getData().get("adresse").toString();
+                        phone = document.getData().get("numéro").toString();
+
+                        //Toast.makeText(context, name+" "+phone+" "+address, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) { }});
+
+         demande = FirebaseDatabase.getInstance();
+         refdemande= demande.getReference("Demandes");
+
+         insert = (Button) view.findViewById(R.id.membre);
+         insert.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 demander();
+             }
+         });
+
+
+
         return view;
     }
 
@@ -49,7 +99,15 @@ public class ProfilFragment extends Fragment  {
         super.onCreate(savedInstanceState);
 
 
-
     }
+      private void demander(){
 
+        String nom = "hello";
+        String num = "hello";
+        String id = refdemande.push().getKey();
+
+        Demandes test = new Demandes(id,nom,num);
+          refdemande.child(id).setValue(test);
+          Toast.makeText(context, "Demande ajouté" , Toast.LENGTH_SHORT).show();
+      }
 }
