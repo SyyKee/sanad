@@ -104,10 +104,9 @@ public class ProfilFragment extends Fragment  {
 
         String nom = "hello";
         String num = "hello";
-        String id = refdemande.push().getKey();
 
-        Demandes test = new Demandes(id,nom,num);
-          refdemande.child(id).setValue(test);
+        Demandes Demandes = new Demandes(nom,num);
+          refdemande.push().setValue(Demandes);
           Toast.makeText(context, "Demande ajouté" , Toast.LENGTH_SHORT).show();
       }
 }

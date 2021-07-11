@@ -181,18 +181,21 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
 
-    <TextView
+    <Button
         android:id="@+id/membre"
-        android:layout_width="236dp"
-        android:layout_height="29dp"
+        android:layout_width="223dp"
+        android:layout_height="33dp"
         android:layout_below="@+id/tvAddress"
         android:layout_marginTop="32dp"
+        android:background="@android:color/transparent"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="start"
         android:text="Devenir membre"
+        android:textAlignment="textStart"
         android:textColor="@color/gray_100"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintHorizontal_bias="0.159"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3"
         tools:ignore="MissingConstraints" />
@@ -201,13 +204,13 @@
         android:id="@+id/view4"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
+        android:layout_marginTop="12dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="16dp"
         android:background="@color/gray_100"
         app:layout_constraintTop_toBottomOf="@+id/membre"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="20dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
