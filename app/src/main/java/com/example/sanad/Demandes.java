@@ -2,11 +2,17 @@ package com.example.sanad;
 
 public class Demandes {
     String nom;
-    String num;
+    String id;
+    boolean statut;
 
-    public  Demandes(String nom , String num){
+    public Demandes(){
+
+    }
+
+    public Demandes(String nom , String id){
         this.nom = nom;
-        this.num = num;
+        this.id = id;
+        this.statut = false;
     }
 
     public String getNom() {
@@ -14,6 +20,8 @@ public class Demandes {
     }
 
     public String getNum() {
-        return num;
+        return id;
     }
+
+    public boolean getStatut() { return statut; }
 }

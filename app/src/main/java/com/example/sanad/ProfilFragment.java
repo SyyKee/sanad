@@ -1,3 +1,4 @@
+
 package com.example.sanad;
 
 import android.content.Context;
@@ -31,8 +32,8 @@ public class ProfilFragment extends Fragment  {
     FirebaseFirestore fStore;
     String UID,name,phone;
     Button insert;
-    FirebaseDatabase demande;
-    DatabaseReference refdemande;
+    //private FirebaseDatabase demande;
+    public DatabaseReference refdemande;
     Context context;
 
     @Override
@@ -55,58 +56,66 @@ public class ProfilFragment extends Fragment  {
 
 
 
-        fStore = FirebaseFirestore.getInstance();
-        mAuth = FirebaseAuth.getInstance();
 
-        UID = mAuth.getCurrentUser().getUid();
-        DocumentReference documentReference = fStore.collection("Users").document(UID);
 
-        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if(task.isSuccessful()){
-                    DocumentSnapshot document = task.getResult();
-                    if(document.exists()){
-                        name = document.getData().get("nomComplet").toString();
-                        // address = document.getData().get("adresse").toString();
-                        phone = document.getData().get("numéro").toString();
+        // demande = FirebaseDatabase.getInstance();
+        //refdemande= demande.getReference();
 
-                        //Toast.makeText(context, name+" "+phone+" "+address, Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) { }});
-
-         demande = FirebaseDatabase.getInstance();
-         refdemande= demande.getReference("Demandes");
-
+         // refdemande = FirebaseDatabase.getInstance().getReference();
          insert = (Button) view.findViewById(R.id.membre);
          insert.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  demander();
+                 insert.setEnabled(false);
              }
          });
 
-
-
-        return view;
+         return view;
     }
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    //public void onCreate(Bundle savedInstanceState) {
+       // super.onCreate(savedInstanceState);
 
 
-    }
+    //}
       private void demander(){
 
-        String nom = "hello";
-        String num = "hello";
+          fStore = FirebaseFirestore.getInstance();
+          mAuth = FirebaseAuth.getInstance();
 
-        Demandes Demandes = new Demandes(nom,num);
-          refdemande.push().setValue(Demandes);
-          Toast.makeText(context, "Demande ajouté" , Toast.LENGTH_SHORT).show();
+          UID = mAuth.getCurrentUser().getUid();
+          DocumentReference documentReference = fStore.collection("Users").document(UID);
+
+          documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+              @Override
+              public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                  if(task.isSuccessful()){
+                      DocumentSnapshot document = task.getResult();
+                      if(document.exists()){
+                          name = document.getData().get("nomComplet").toString();
+
+                          String nom = name;
+                          String id = mAuth.getCurrentUser().getUid();
+                          refdemande = FirebaseDatabase.getInstance("https://sanad-30a51-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("requestmm").child(UID);
+
+                          Demandes test = new Demandes(nom,id);
+                           //refdemande.child("requestmm").setValue(test);
+
+
+                         // HashMap<String, Demandes> registerHash = new HashMap<>();
+                         // registerHash.put(refdemande.push().getKey(), test);
+
+                         // refdemande.push().setValue(registerHash);
+                          refdemande.setValue(test);
+                          Toast.makeText(context, "Demande ajouté" , Toast.LENGTH_SHORT).show();
+                      }
+                  }
+              }
+          }).addOnFailureListener(new OnFailureListener() {
+              @Override
+              public void onFailure(@NonNull Exception e) { }});
+
+
       }
 }
